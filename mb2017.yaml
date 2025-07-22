@@ -5,7 +5,7 @@ autoinstall:
     realname: muo
     username: muo
     password: "$6$fCmm3yNs9rb36FKH$XKgrhmd79dX9ubueJ6lZGLv3fhq5IMaHWGjcManNd5kaBJ1GxL.LaNpDaWgxbIMELl26pjW8G47a7T7xQR/CR."
-    timezone: Asia/Tokyo
+  timezone: Asia/Tokyo
   source:
     id: ubuntu-desktop-minimal
     search_drivers: true
