@@ -1,0 +1,143 @@
+autoinstall:
+  version: 1
+  identity:
+    hostname: mb2017
+    realname: muo
+    username: muo
+    password: "$6$fCmm3yNs9rb36FKH$XKgrhmd79dX9ubueJ6lZGLv3fhq5IMaHWGjcManNd5kaBJ1GxL.LaNpDaWgxbIMELl26pjW8G47a7T7xQR/CR."
+  source:
+    id: ubuntu-desktop-minimal
+    search_drivers: true
+  packages:
+    - vim
+    - tmux
+    - git
+  storage:
+    config:
+    - transport: pcie
+      preserve: true
+      id: nvme-controller-nvme0
+      type: nvme_controller
+    - ptable: gpt
+      nvme_controller: nvme-controller-nvme0
+      path: /dev/nvme0n1
+      preserve: true
+      name: ''
+      grub_device: false
+      id: disk-nvme0n1
+      type: disk
+    - device: disk-nvme0n1
+      size: 314572800
+      flag: boot
+      number: 1
+      preserve: true
+      grub_device: true
+      offset: 24576
+      partition_type: c12a7328-f81f-11d2-ba4b-00a0c93ec93b
+      path: /dev/nvme0n1p1
+      id: partition-nvme0n1p1
+      type: partition
+    - device: disk-nvme0n1
+      size: 80000000000
+      number: 2
+      preserve: true
+      grub_device: false
+      offset: 314597376
+      partition_type: 7c3457ef-0000-11aa-aa11-00306543ecac
+      path: /dev/nvme0n1p2
+      id: partition-nvme0n1p2
+      type: partition
+    - fstype: vfat
+      volume: partition-nvme0n1p1
+      preserve: true
+      id: format-partition-nvme0n1p1
+      type: format
+    - device: disk-nvme0n1
+      size: 1024458752
+      wipe: superblock
+      flag: linux
+      number: 3
+      preserve: true
+      grub_device: false
+      offset: 80314630144
+      partition_type: 0fc63daf-8483-4772-8e79-3d69d8477de4
+      path: /dev/nvme0n1p3
+      id: partition-nvme0n1p3
+      type: partition
+    - fstype: ext4
+      volume: partition-nvme0n1p3
+      preserve: false
+      id: format-1
+      type: format
+    - device: disk-nvme0n1
+      size: 16000221184
+      wipe: superblock
+      flag: swap
+      number: 4
+      preserve: true
+      grub_device: false
+      offset: 81339088896
+      partition_type: 0657fd6d-a4ab-43c4-84e5-0933c84b4f4f
+      path: /dev/nvme0n1p4
+      id: partition-nvme0n1p4
+      type: partition
+    - fstype: swap
+      volume: partition-nvme0n1p4
+      preserve: false
+      id: format-2
+      type: format
+    - path: ''
+      device: format-2
+      id: mount-2
+      type: mount
+    - device: disk-nvme0n1
+      size: 80000057344
+      wipe: superblock
+      number: 5
+      preserve: false
+      offset: 97339310080
+      path: /dev/nvme0n1p5
+      id: partition-0
+      type: partition
+    - fstype: ext4
+      volume: partition-0
+      preserve: false
+      id: format-3
+      type: format
+    - path: /
+      device: format-3
+      id: mount-3
+      type: mount
+    - device: disk-nvme0n1
+      size: 322937290752
+      wipe: superblock
+      number: 6
+      preserve: true
+      offset: 177339367424
+      path: /dev/nvme0n1p6
+      id: partition-1
+      type: partition
+    - fstype: ext4
+      volume: partition-1
+      preserve: true
+      id: format-4
+      type: format
+    - path: /home
+      device: format-4
+      id: mount-4
+      type: mount
+    - path: /boot
+      device: format-1
+      id: mount-1
+      type: mount
+    - path: /boot/efi
+      device: format-partition-nvme0n1p1
+      id: mount-0
+      type: mount
+    swap:
+      size: 0
+  codecs:
+    install: false
+  drivers:
+    install: true
+  updates: security
