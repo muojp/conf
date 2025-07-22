@@ -154,11 +154,11 @@ autoinstall:
     install: true
   updates: security
   late-commands:
-    - curtin in-target --target=/target -- mkdir -p /home/muo/post-install
-    - curtin in-target --target=/target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/envconf.sh -o /home/muo/post-install/envconf.sh
-    - curtin in-target --target=/target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/firefox-post-install.sh -o /home/muo/post-install/firefox-post-install.sh
-    - curtin in-target --target=/target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/gnome-setup.sh -o /home/muo/post-install/gnome-setup.sh
-    - curtin in-target --target=/target -- chmod +x /home/muo/post-install/envconf.sh
-    - curtin in-target --target=/target -- chmod +x /home/muo/post-install/firefox-post-install.sh
-    - curtin in-target --target=/target -- chmod +x /home/muo/post-install/gnome-setup.sh
-    - curtin in-target --target=/target -- chown -R muo:muo /home/muo/post-install
+    - curtin in-target -- mkdir -p /home/muo/post-install
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/envconf.sh -o /home/muo/post-install/envconf.sh
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/firefox-post-install.sh -o /home/muo/post-install/firefox-post-install.sh
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/gnome-setup.sh -o /home/muo/post-install/gnome-setup.sh
+    - curtin in-target -- chmod +x /home/muo/post-install/envconf.sh
+    - curtin in-target -- chmod +x /home/muo/post-install/firefox-post-install.sh
+    - curtin in-target -- chmod +x /home/muo/post-install/gnome-setup.sh
+    - curtin in-target -- chown -R muo:muo /home/muo/post-install
