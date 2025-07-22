@@ -5,6 +5,7 @@ autoinstall:
     realname: muo
     username: muo
     password: "$6$fCmm3yNs9rb36FKH$XKgrhmd79dX9ubueJ6lZGLv3fhq5IMaHWGjcManNd5kaBJ1GxL.LaNpDaWgxbIMELl26pjW8G47a7T7xQR/CR."
+    timezone: Asia/Tokyo
   source:
     id: ubuntu-desktop-minimal
     search_drivers: true
@@ -12,6 +13,11 @@ autoinstall:
     - vim
     - tmux
     - git
+    - net-tools
+    - virt-manager
+    - curl
+    - wireguard-tools
+    - fcitx5-mozc
   storage:
     config:
     - transport: pcie
@@ -147,3 +153,12 @@ autoinstall:
   drivers:
     install: true
   updates: security
+  late-commands:
+    - curtin in-target --target=/target -- mkdir -p /home/muo/post-install
+    - curtin in-target --target=/target -- curl -L https://muojp.github.io/ubuntu-post-install/envconf.sh -o /home/muo/post-install/envconf.sh
+    - curtin in-target --target=/target -- curl -L https://muojp.github.io/ubuntu-post-install/firefox-post-install.sh -o /home/muo/post-install/firefox-post-install.sh
+    - curtin in-target --target=/target -- curl -L https://muojp.github.io/ubuntu-post-install/gnome-setup.sh -o /home/muo/post-install/gnome-setup.sh
+    - curtin in-target --target=/target -- chmod +x /home/muo/post-install/envconf.sh
+    - curtin in-target --target=/target -- chmod +x /home/muo/post-install/firefox-post-install.sh
+    - curtin in-target --target=/target -- chmod +x /home/muo/post-install/gnome-setup.sh
+    - curtin in-target --target=/target -- chown -R muo:muo /home/muo/post-install
