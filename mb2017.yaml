@@ -37,6 +37,11 @@ autoinstall:
       path: /dev/nvme0n1p1
       id: partition-nvme0n1p1
       type: partition
+    - fstype: vfat
+      volume: partition-nvme0n1p1
+      preserve: true
+      id: format-partition-nvme0n1p1
+      type: format
     - device: disk-nvme0n1
       size: 80000000000
       number: 2
@@ -47,11 +52,6 @@ autoinstall:
       path: /dev/nvme0n1p2
       id: partition-nvme0n1p2
       type: partition
-    - fstype: vfat
-      volume: partition-nvme0n1p1
-      preserve: true
-      id: format-partition-nvme0n1p1
-      type: format
     - device: disk-nvme0n1
       size: 1024458752
       wipe: superblock
@@ -93,14 +93,17 @@ autoinstall:
     - device: disk-nvme0n1
       size: 80000057344
       wipe: superblock
+      flag: linux
       number: 5
-      preserve: false
+      preserve: true
+      grub_device: false
       offset: 97339310080
+      partition_type: 0fc63daf-8483-4772-8e79-3d69d8477de4
       path: /dev/nvme0n1p5
-      id: partition-0
+      id: partition-nvme0n1p5
       type: partition
     - fstype: ext4
-      volume: partition-0
+      volume: partition-nvme0n1p5
       preserve: false
       id: format-3
       type: format
@@ -110,25 +113,28 @@ autoinstall:
       type: mount
     - device: disk-nvme0n1
       size: 322937290752
-      wipe: superblock
+      flag: linux
       number: 6
       preserve: true
+      grub_device: false
       offset: 177339367424
+      partition_type: 0fc63daf-8483-4772-8e79-3d69d8477de4
       path: /dev/nvme0n1p6
-      id: partition-1
+      uuid: 1aec554c-a3ee-4839-8116-810dba0a5489
+      id: partition-nvme0n1p6
       type: partition
+    - path: /boot
+      device: format-1
+      id: mount-1
+      type: mount
     - fstype: ext4
-      volume: partition-1
+      volume: partition-nvme0n1p6
       preserve: true
       id: format-4
       type: format
     - path: /home
       device: format-4
       id: mount-4
-      type: mount
-    - path: /boot
-      device: format-1
-      id: mount-1
       type: mount
     - path: /boot/efi
       device: format-partition-nvme0n1p1
