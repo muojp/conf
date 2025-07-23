@@ -154,10 +154,14 @@ autoinstall:
     install: true
   updates: security
   late-commands:
-    - curtin in-target -- mkdir -p /home/muo/post-install
-    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/envconf.sh -o /home/muo/post-install/envconf.sh
-    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/firefox-post-install.sh -o /home/muo/post-install/firefox-post-install.sh
-    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/gnome-setup.sh -o /home/muo/post-install/gnome-setup.sh
-    - curtin in-target -- chmod +x /home/muo/post-install/envconf.sh
-    - curtin in-target -- chmod +x /home/muo/post-install/firefox-post-install.sh
-    - curtin in-target -- chmod +x /home/muo/post-install/gnome-setup.sh
+    - curtin in-target -- mkdir -p /opt/post-install
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/envconf.sh -o /opt/post-install/envconf.sh
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/firefox-post-install.sh -o /opt/post-install/firefox-post-install.sh
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/gnome-setup.sh -o /opt/post-install/gnome-setup.sh
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/setup-autoshutdown.sh -o /opt/post-install/setup-autoshutdown.sh
+    - curtin in-target -- curl -L https://muojp.github.io/conf/ubuntu-post-install/shutdown-by-continuous-lid-close.sh -o /opt/post-install/shutdown-by-continuous-lid-close.sh
+    - curtin in-target -- chmod +x /opt/post-install/envconf.sh
+    - curtin in-target -- chmod +x /opt/post-install/firefox-post-install.sh
+    - curtin in-target -- chmod +x /opt/post-install/gnome-setup.sh
+    - curtin in-target -- chmod +x /opt/post-install/setup-autoshutdown.sh
+    - curtin in-target -- chmod +x /opt/post-install/shutdown-by-continuous-lid-close.sh
