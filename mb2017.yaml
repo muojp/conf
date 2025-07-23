@@ -14,6 +14,10 @@ autoinstall:
     - tmux
     - git
     - net-tools
+    - qemu-kvm
+    - libvirt-daemon-system
+    - libvirt-clients
+    - bridge-utils
     - virt-manager
     - curl
     - wireguard-tools

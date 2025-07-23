@@ -65,6 +65,12 @@ sudo apt-get install -f -y
 rm /tmp/nomachine.deb
 echo "NoMachine installed successfully"
 
+# User Group Configuration
+echo "=== Configuring user groups ==="
+echo "Adding user to libvirt group..."
+sudo adduser $USER libvirt
+echo "User group configuration completed."
+
 # Power Management Configuration
 echo "=== Configuring power management ==="
 echo "Disabling suspend on lid close (ACPI mitigation)..."
