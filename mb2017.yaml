@@ -161,4 +161,3 @@ autoinstall:
     - curtin in-target -- chmod +x /home/muo/post-install/envconf.sh
     - curtin in-target -- chmod +x /home/muo/post-install/firefox-post-install.sh
     - curtin in-target -- chmod +x /home/muo/post-install/gnome-setup.sh
-    - curtin in-target -- chown -R muo:muo /home/muo/post-install
