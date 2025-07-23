@@ -26,7 +26,7 @@ echo "Development environment setup completed."
 # GNOME Desktop Setup
 if [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || [ "$XDG_CURRENT_DESKTOP" = "ubuntu:GNOME" ]; then
     echo "=== Setting up GNOME desktop environment ==="
-    curl -L https://muojp.github.io/conf/gnome-setup.sh | bash
+    "$(dirname "$0")/gnome-setup.sh"
     echo "GNOME setup completed."
 fi
 
