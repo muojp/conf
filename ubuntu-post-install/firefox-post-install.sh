@@ -6,7 +6,17 @@ echo "Firefox Post-Install Configuration Starting..."
 
 # Firefox プロファイルディレクトリを探す
 FIREFOX_PROFILE_DIR=""
-if [ -d "$HOME/.mozilla/firefox" ]; then
+
+# Snap版Firefoxのプロファイルディレクトリをチェック
+if [ -d "$HOME/snap/firefox/common/.mozilla/firefox" ]; then
+    FIREFOX_PROFILE_DIR=$(find "$HOME/snap/firefox/common/.mozilla/firefox" -name "*.default" -type d | head -1)
+    if [ -z "$FIREFOX_PROFILE_DIR" ]; then
+        FIREFOX_PROFILE_DIR=$(find "$HOME/snap/firefox/common/.mozilla/firefox" -name "*.default-release" -type d | head -1)
+    fi
+fi
+
+# 通常版Firefoxのプロファイルディレクトリをチェック（Snap版が見つからない場合）
+if [ -z "$FIREFOX_PROFILE_DIR" ] && [ -d "$HOME/.mozilla/firefox" ]; then
     FIREFOX_PROFILE_DIR=$(find "$HOME/.mozilla/firefox" -name "*.default-release" -type d | head -1)
     if [ -z "$FIREFOX_PROFILE_DIR" ]; then
         FIREFOX_PROFILE_DIR=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d | head -1)
@@ -15,6 +25,9 @@ fi
 
 if [ -z "$FIREFOX_PROFILE_DIR" ]; then
     echo "Firefox profile directory not found. Please run Firefox once first."
+    echo "Checked locations:"
+    echo "  - $HOME/snap/firefox/common/.mozilla/firefox (Snap version)"
+    echo "  - $HOME/.mozilla/firefox (Standard version)"
     exit 1
 fi
 
