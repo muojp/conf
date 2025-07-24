@@ -14,7 +14,7 @@ sudo chown autoshutdown:autoshutdown /opt/autoshutdown
 
 # Copy shutdown script
 echo "Installing shutdown script..."
-sudo cp shutdown-by-continuous-lid-close.sh /opt/autoshutdown/
+sudo cp "$(dirname "$0")/shutdown-by-continuous-lid-close.sh" /opt/autoshutdown/
 sudo chown autoshutdown:root /opt/autoshutdown/shutdown-by-continuous-lid-close.sh
 sudo chmod 755 /opt/autoshutdown/shutdown-by-continuous-lid-close.sh
 

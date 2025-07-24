@@ -63,6 +63,18 @@ gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
 
 echo "Automatic brightness adjustment disabled"
 
+# IME設定 (fcitx5をキーボード入力システムとして設定)
+echo "Setting fcitx5 as keyboard input method system..."
+im-config -n fcitx5
+
+echo "fcitx5 set as input method system successfully"
+
+# 時計の秒表示を有効化
+echo "Enabling seconds in clock..."
+gsettings set org.gnome.desktop.interface clock-show-seconds true
+
+echo "Clock seconds enabled successfully"
+
 # Dock設定 - 不要なアプリを削除
 echo "Configuring dock favorites..."
 
