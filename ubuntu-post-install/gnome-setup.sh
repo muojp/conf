@@ -63,6 +63,13 @@ gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
 
 echo "Automatic brightness adjustment disabled"
 
+# 自動サスペンドを無効化
+echo "Disabling automatic suspend..."
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+
+echo "Automatic suspend disabled"
+
 # IME設定 (fcitx5をキーボード入力システムとして設定)
 echo "Setting fcitx5 as keyboard input method system..."
 im-config -n fcitx5
