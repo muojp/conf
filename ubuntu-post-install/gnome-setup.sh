@@ -82,6 +82,12 @@ gsettings set org.gnome.desktop.interface clock-show-seconds true
 
 echo "Clock seconds enabled successfully"
 
+# バッテリー残量パーセンテージ表示を有効化
+echo "Enabling battery percentage display..."
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+
+echo "Battery percentage display enabled successfully"
+
 # Dock設定 - 不要なアプリを削除
 echo "Configuring dock favorites..."
 
